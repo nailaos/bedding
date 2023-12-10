@@ -1,0 +1,4 @@
+motion.c:7:6:setv	1
+motion.c:12:6:move_time	1
+motion.c:18:6:setdir	5
+motion.c:60:6:rotate	9

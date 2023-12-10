@@ -1,0 +1,4 @@
+../Core/Src/motion.c:7:6:setv	16	static
+../Core/Src/motion.c:12:6:move_time	24	static
+../Core/Src/motion.c:18:6:setdir	16	static
+../Core/Src/motion.c:60:6:rotate	40	static
