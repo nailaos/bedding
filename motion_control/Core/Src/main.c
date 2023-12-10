@@ -169,12 +169,13 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
+
+    /* USER CODE BEGIN 3 */
 	  HAL_Delay(1000);
 	  if(flag){
-		  move_time(0,1000,60);
-		  flag=0;
+	  	move_time(0,1000,60);
+	  	flag=0;
 	  }
-    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
