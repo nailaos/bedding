@@ -18,7 +18,7 @@ uint8_t cutavoid[4];//In case bytenum or time be wrong
 
 uint8_t gameStatusMessage[MAX_STATUS_LEN];
 
-UART_HandleTypeDef *zigbee_huart;
+UART_HandleTypeDef* zigbee_huart;
 
 int32_t modularAdd(int32_t a, int32_t b, int32_t max) // In case modular does not work for negative numbers
 {
@@ -31,26 +31,22 @@ int32_t modularAdd(int32_t a, int32_t b, int32_t max) // In case modular does no
     return c;
 }
 
-static uint8_t calculateChecksum(uint8_t tempMessage[], int32_t start_idx, int32_t count)
-{
+static uint8_t calculateChecksum(uint8_t tempMessage[], int32_t start_idx, int32_t count) {
     uint8_t checksum = 0;
-    for (int32_t i = 0; i < count; ++i)
-    {
+    for (int32_t i = 0; i < count; ++i) {
         checksum ^= tempMessage[modularAdd(i, start_idx, MAX_MSG_LEN * 2)];
     }
     return checksum;
 }
 
-static float changeFloatData(uint8_t *dat)
-{
+static float changeFloatData(uint8_t* dat) {
     float float_data;
-    float_data = *((float *)dat);
+    float_data = *((float*)dat);
     return float_data;
 }
 
 
-void zigbee_Init(UART_HandleTypeDef *huart)
-{
+void zigbee_Init(UART_HandleTypeDef* huart) {
     memset(zigbeeMessage, 0x00, MAX_MSG_LEN);
     memset(zigbeeRaw, 0x00, MAX_MSG_LEN);
     memset(gameStatusMessage, 0x00, MAX_STATUS_LEN);
@@ -58,12 +54,10 @@ void zigbee_Init(UART_HandleTypeDef *huart)
     HAL_UART_Receive_DMA(zigbee_huart, zigbeeRaw, MAX_MSG_LEN);
 }
 
-void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart)
-{
-    if (huart == zigbee_huart)
-    {
-        uint8_t *zigbeeMsgPtr = &zigbeeMessage[memPtr];
-        uint8_t *rawPtr = &zigbeeRaw[0];
+void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef* huart) {
+    if (huart == zigbee_huart) {
+        uint8_t* zigbeeMsgPtr = &zigbeeMessage[memPtr];
+        uint8_t* rawPtr = &zigbeeRaw[0];
         memcpy(zigbeeMsgPtr, rawPtr, sizeof(uint8_t) * MAX_MSG_LEN / 2);
         memPtr = modularAdd(MAX_MSG_LEN / 2, memPtr, MAX_MSG_LEN * 2);
         zigbeeMessageRecord();
@@ -72,20 +66,23 @@ void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart)
     }
 }
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-    if (huart == zigbee_huart)
-    {
-        uint8_t *zigbeeMsgPtr = &zigbeeMessage[memPtr];
-        uint8_t *rawPtr = &zigbeeRaw[MAX_MSG_LEN / 2];
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
+    if (huart == zigbee_huart) {
+        uint8_t* zigbeeMsgPtr = &zigbeeMessage[memPtr];
+        uint8_t* rawPtr = &zigbeeRaw[MAX_MSG_LEN / 2];
         memcpy(zigbeeMsgPtr, rawPtr, sizeof(uint8_t) * MAX_MSG_LEN / 2);
         memPtr = modularAdd(MAX_MSG_LEN / 2, memPtr, MAX_MSG_LEN * 2);
         zigbeeMessageRecord();
     }
 }
 
-uint8_t zigbeeMessageRecord()
-{
+int32_t getMapPosition(Position_edc25* Pos) {
+    int32_t x = (int)Pos->posx;
+    int32_t y = (int)Pos->posy;
+    return 8 * x + y;
+}
+
+uint8_t zigbeeMessageRecord() {
 
     int32_t msgIndex = 0;
     uint8_t tempZigbeeMessage[MAX_MSG_LEN * 2];
@@ -96,139 +93,116 @@ uint8_t zigbeeMessageRecord()
     int16_t byteNum;
     // find the first 0x55 of msgType
     for (msgIndex = modularAdd(prevMemPtr, -MAX_SINGLE_MSG, MAX_MSG_LEN * 2); msgIndex != prevMemPtr;)
-    // A message is at most 30 bytes long. We find the header of the first full message
+        // A message is at most 30 bytes long. We find the header of the first full message
     {
         if (tempZigbeeMessage[msgIndex] == 0x55 &&
-            tempZigbeeMessage[modularAdd(msgIndex, 1, MAX_MSG_LEN * 2)] == 0xAA)
-        {
-            
-            
+            tempZigbeeMessage[modularAdd(msgIndex, 1, MAX_MSG_LEN * 2)] == 0xAA) {
+
+
             cutavoid[0] = tempZigbeeMessage[modularAdd(msgIndex, 2, MAX_MSG_LEN * 2)];
             cutavoid[1] = tempZigbeeMessage[modularAdd(msgIndex, 3, MAX_MSG_LEN * 2)];
             byteNum = *((int16_t*)(cutavoid));
-            
+
             uint8_t tmpchecksum;
             tmpchecksum = calculateChecksum(tempZigbeeMessage, modularAdd(msgIndex, 5, MAX_MSG_LEN * 2), byteNum);
-            if (tmpchecksum == tempZigbeeMessage[modularAdd(msgIndex, 4, MAX_MSG_LEN * 2)])
-            {
+            if (tmpchecksum == tempZigbeeMessage[modularAdd(msgIndex, 4, MAX_MSG_LEN * 2)]) {
                 break;
             }
         }
         msgIndex = modularAdd(msgIndex, -1, MAX_MSG_LEN * 2);
     }
-    if (msgIndex == prevMemPtr)
-    {
+    if (msgIndex == prevMemPtr) {
         return 1;
     }
-    
+
     int32_t prevTime, newTime;
     prevTime = getGameTime();
-    for(int32_t i = 0;i < 4;i++)
-    {
-        cutavoid[i] =  tempZigbeeMessage[modularAdd(msgIndex, 5 + 1 + i, MAX_MSG_LEN * 2)];
+    for (int32_t i = 0; i < 4; i++) {
+        cutavoid[i] = tempZigbeeMessage[modularAdd(msgIndex, 5 + 1 + i, MAX_MSG_LEN * 2)];
     }
-    newTime = *((int32_t *)(cutavoid));
-    if (newTime >= prevTime && newTime <= prevTime + 1000)
-    {
+    newTime = *((int32_t*)(cutavoid));
+    if (newTime >= prevTime && newTime <= prevTime + 1000) {
         memset(gameStatusMessage, 0x00, MAX_STATUS_LEN);
-        for (int32_t i = 0; i < byteNum; i++)
-        {
+        for (int32_t i = 0; i < byteNum; i++) {
             gameStatusMessage[i] = tempZigbeeMessage[modularAdd(msgIndex, 5 + i, MAX_MSG_LEN * 2)];
         }
     }
     return 0;
 }
 
-int32_t getGameTime()
-{
+int32_t getGameTime() {
     int32_t time;
-    time = *((int32_t *)(&gameStatusMessage[1]));
+    time = *((int32_t*)(&gameStatusMessage[1]));
     return time;
 }
 
-GameStage_edc25 getGameStage()
-{
+GameStage_edc25 getGameStage() {
     uint8_t stage;
     stage = gameStatusMessage[0];
     return (GameStage_edc25)stage;
 }
 
-void getHeightOfAllChunks(uint8_t *dest)
-{
+void getHeightOfAllChunks(uint8_t* dest) {
     memcpy(dest, gameStatusMessage[5], 64);
 }
 
-uint8_t getHeightOfId(uint8_t id)
-{
+uint8_t getHeightOfId(uint8_t id) {
     return gameStatusMessage[5 + id];
 }
 
-bool hasBed()
-{
+bool hasBed() {
     return (bool)gameStatusMessage[69];
 }
 
-bool hasBedOpponent()
-{
+bool hasBedOpponent() {
     return (bool)gameStatusMessage[70];
 }
 
-void getPosition(Position_edc25 *Pos)
-{
+void getPosition(Position_edc25* Pos) {
     Pos->posx = changeFloatData(gameStatusMessage + 71);
     Pos->posy = changeFloatData(gameStatusMessage + 75);
 }
 
-void getPositionOpponent(Position_edc25 *Pos)
-{
+void getPositionOpponent(Position_edc25* Pos) {
     Pos->posx = changeFloatData(gameStatusMessage + 79);
     Pos->posy = changeFloatData(gameStatusMessage + 83);
 }
 
-uint8_t getAglity()
-{
+uint8_t getAglity() {
     return gameStatusMessage[87];
 }
 
-uint8_t getHealth()
-{
+uint8_t getHealth() {
     return gameStatusMessage[88];
 }
 
-uint8_t getMaxHealth()
-{
+uint8_t getMaxHealth() {
     return gameStatusMessage[89];
 }
 
-uint8_t getStrength()
-{
+uint8_t getStrength() {
     return gameStatusMessage[90];
 }
 
-uint8_t getEmeraldCount()
-{
+uint8_t getEmeraldCount() {
     return gameStatusMessage[91];
 }
 
-uint8_t getWoolCount()
-{
+uint8_t getWoolCount() {
     return gameStatusMessage[92];
 }
 
-void attack_id(uint8_t chunk_id)
-{
-    uint8_t slaver_msg[7] = {0x55, 0xAA, 0x02, 0x00, (uint8_t)(0^chunk_id), 0, chunk_id};
+void attack_id(uint8_t chunk_id) {
+    uint8_t slaver_msg[7] = { 0x55, 0xAA, 0x02, 0x00, (uint8_t)(0 ^ chunk_id), 0, chunk_id };
     HAL_UART_Transmit(zigbee_huart, slaver_msg, 7, HAL_MAX_DELAY);
 }
 
-void place_block_id(uint8_t chunk_id)
-{
-    uint8_t slaver_msg[7] = {0x55, 0xAA, 0x02, 0x00, (uint8_t)(1^chunk_id), 1, chunk_id};
+void place_block_id(uint8_t chunk_id) {
+    uint8_t slaver_msg[7] = { 0x55, 0xAA, 0x02, 0x00, (uint8_t)(1 ^ chunk_id), 1, chunk_id };
     HAL_UART_Transmit(zigbee_huart, slaver_msg, 7, HAL_MAX_DELAY);
 }
 
-void trade_id(uint8_t item_id)
-{
-    uint8_t slaver_msg[7] = {0x55, 0xAA, 0x02, 0x00, (uint8_t)(2^item_id), 2, item_id};
+void trade_id(uint8_t item_id) {
+    uint8_t slaver_msg[7] = { 0x55, 0xAA, 0x02, 0x00, (uint8_t)(2 ^ item_id), 2, item_id };
     HAL_UART_Transmit(zigbee_huart, slaver_msg, 7, HAL_MAX_DELAY);
 }

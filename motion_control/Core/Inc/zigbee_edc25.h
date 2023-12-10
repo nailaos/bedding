@@ -4,21 +4,19 @@
 #include "stm32f1xx_hal.h"
 #include "string.h"
 
-typedef enum
-{
+typedef enum {
     READY,
     RUNNING,
     BATTLING,
     FINISHED
 } GameStage_edc25;
 
-typedef struct
-{
+typedef struct {
     float posx;
     float posy;
 } Position_edc25;
 
-void zigbee_Init(UART_HandleTypeDef *huart); // 初始化,开始接收消息
+void zigbee_Init(UART_HandleTypeDef* huart); // 初始化,开始接收消息
 uint8_t zigbeeMessageRecord();                  // 刷新消息
 
 // 获取游戏时间
@@ -28,7 +26,7 @@ int32_t getGameTime();
 GameStage_edc25 getGameStage();
 
 // 获取所有块的高度信息
-void getHeightOfAllChunks(uint8_t *dest);
+void getHeightOfAllChunks(uint8_t* dest);
 
 // 根据ID获取块的高度
 uint8_t getHeightOfId(uint8_t id);
@@ -40,10 +38,13 @@ bool hasBed();
 bool hasBedOpponent();
 
 // 获取玩家位置
-void getPosition(Position_edc25 *Pos);
+void getPosition(Position_edc25* Pos);
 
 // 获取对手位置
-void getPositionOpponent(Position_edc25 *Pos);
+void getPositionOpponent(Position_edc25* Pos);
+
+// 获取当前位置对应的地图id
+int32_t getMapPosition(Position_edc25* Pos);
 
 // 获取敏捷
 uint8_t getAgility();
