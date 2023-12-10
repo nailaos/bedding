@@ -77,7 +77,7 @@ float pid(pidstr *a,float dr)//用于更新PWM的占空比
   }
 }
 
-//这个刚刚加过了，只是告诉读�?�应该放�??
+//这个刚刚加过了，只是告诉读�?�应该放�???
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(htim->Instance==TIM2)
 	  {
@@ -139,15 +139,16 @@ int main(void)
   MX_TIM3_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
+  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start_IT(&htim2); // 使能定时�??2
+  HAL_TIM_Base_Start_IT(&htim2); // 使能定时�???2
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);// 使能定定时器1的�?�道1，设定为PWM输出
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-  HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL); //使能编码器时�??3
+  HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL); //使能编码器时�???3
   int flag=1;
-  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_SET);//设置四个电机的转�??
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_SET);//设置四个电机的转�???
   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_RESET);
   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_2,GPIO_PIN_SET);
   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,GPIO_PIN_RESET);
@@ -168,7 +169,6 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
 
     /* USER CODE BEGIN 3 */
 	  HAL_Delay(1000);

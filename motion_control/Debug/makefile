@@ -75,8 +75,8 @@ all: main-build
 main-build: motion_control.elf secondary-outputs
 
 # Tool invocations
-motion_control.elf motion_control.map: $(OBJS) $(USER_OBJS) G:\STM32CubeIDE_1.12.1\Workspace\motion_control\STM32F103RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "motion_control.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\Workspace\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+motion_control.elf motion_control.map: $(OBJS) $(USER_OBJS) G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "motion_control.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
