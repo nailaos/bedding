@@ -1,0 +1,44 @@
+{
+    "loggingLevel": "Information",
+    "serverPort": 8080,
+    "game": {
+        "diamondMines": [
+            {
+                "Item1": 2,
+                "Item2": 1
+            },
+            {
+                "Item1": 5,
+                "Item2": 6
+            }
+        ],
+        "goldMines": [
+            {
+                "Item1": 4,
+                "Item2": 0
+            },
+            {
+                "Item1": 3,
+                "Item2": 7
+            }
+        ],
+        "ironMines": [
+            {
+                "Item1": 0,
+                "Item2": 0
+            },
+            {
+                "Item1": 0,
+                "Item2": 0
+            },
+            {
+                "Item1": 7,
+                "Item2": 7
+            },
+            {
+                "Item1": 7,
+                "Item2": 7
+            }
+        ]
+    }
+}
