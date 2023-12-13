@@ -1,3 +1,3 @@
-bool makedecision() {
-    return false;
+int  makedecision() {
+    return 0;
 }

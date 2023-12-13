@@ -63,3 +63,1462 @@ In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
   754 | HAL_StatusTypeDef HAL_UART_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
       |                                                                   ~~~~~~~~~^~~~~
 "make -j20 all" terminated with exit code 2. Build might be incomplete.
+11:43:43 **** Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/decision.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/decision.d" -MT"Core/Src/decision.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/decision.o"
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_hal_msp.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_hal_msp.d" -MT"Core/Src/stm32f1xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32f1xx.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32f1xx.d" -MT"Core/Src/system_stm32f1xx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/system_stm32f1xx.o"
+arm-none-eabi-gcc "../Core/Src/tim.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tim.d" -MT"Core/Src/tim.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/tim.o"
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/usart.o"
+arm-none-eabi-gcc "../Core/Src/zigbee_edc25.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/zigbee_edc25.d" -MT"Core/Src/zigbee_edc25.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/zigbee_edc25.o"
+../Core/Src/motion.c: In function 'rotate':
+../Core/Src/motion.c:65:8: warning: unused variable 'yaw' [-Wunused-variable]
+   65 |  float yaw = GetYaw();
+      |        ^~~
+../Core/Src/motion.c: In function 'putwool':
+../Core/Src/motion.c:101:6: warning: implicit declaration of function 'abs' [-Wimplicit-function-declaration]
+  101 |  if (abs(a->posx - b->posy) < 0.5) {
+      |      ^~~
+../Core/Src/motion.c:101:18: warning: 'abs' argument 1 promotes to 'double' where 'int' is expected in a call to built-in function declared without prototype [-Wbuiltin-declaration-mismatch]
+  101 |  if (abs(a->posx - b->posy) < 0.5) {
+      |          ~~~~~~~~^~~~~~~~~
+<built-in>: note: built-in 'abs' declared here
+../Core/Src/zigbee_edc25.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/zigbee_edc25.c:80:9: warning: implicit declaration of function 'jy62MessageRecord'; did you mean 'zigbeeMessageRecord'? [-Wimplicit-function-declaration]
+   80 |         jy62MessageRecord();
+      |         ^~~~~~~~~~~~~~~~~
+      |         zigbeeMessageRecord
+../Core/Src/zigbee_edc25.c: In function 'getHeightOfAllChunks':
+../Core/Src/zigbee_edc25.c:152:35: warning: passing argument 2 of 'memcpy' makes pointer from integer without a cast [-Wint-conversion]
+  152 |     memcpy(dest, gameStatusMessage[5], 64);
+      |                  ~~~~~~~~~~~~~~~~~^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+../Core/Src/motion.c: In function 'my_move':
+../Core/Src/motion.c:123:18: error: 'woolnum' undeclared (first use in this function)
+  123 |    putwool(a, b, woolnum);
+      |                  ^~~~~~~
+../Core/Src/motion.c:123:18: note: each undeclared identifier is reported only once for each function it appears in
+In file included from ../Core/Inc/zigbee_edc25.h:5,
+                 from ../Core/Src/zigbee_edc25.c:1:
+g:\stm32cubeide_1.12.1\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\include\string.h:31:35: note: expected 'const void * restrict' but argument is of type 'uint8_t' {aka 'unsigned char'}
+   31 | void *  memcpy (void *__restrict, const void *__restrict, size_t);
+      |                                   ^
+../Core/Src/motion.c:125:5: warning: implicit declaration of function 'setV'; did you mean 'setv'? [-Wimplicit-function-declaration]
+  125 |     setV(0);
+      |     ^~~~
+      |     setv
+../Core/Src/motion.c: At top level:
+../Core/Src/motion.c:137:6: error: conflicting types for 'my_Move'
+  137 | void my_Move(Position_edc25* path, int size) {
+      |      ^~~~~~~
+In file included from ../Core/Src/motion.c:1:
+../Core/Inc/motion.h:32:8: note: previous declaration of 'my_Move' was here
+   32 |   void my_Move(Position_edc25* path);
+      |        ^~~~~~~
+make: *** [Core/Src/subdir.mk:58: Core/Src/motion.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+11:44:52 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+../Core/Src/motion.c: In function 'rotate':
+../Core/Src/motion.c:66:8: warning: unused variable 'yaw' [-Wunused-variable]
+   66 |  float yaw = GetYaw();
+      |        ^~~
+../Core/Src/motion.c: In function 'putwool':
+../Core/Src/motion.c:102:6: warning: implicit declaration of function 'abs' [-Wimplicit-function-declaration]
+  102 |  if (abs(a->posx - b->posy) < 0.5) {
+      |      ^~~
+../Core/Src/motion.c:102:18: warning: 'abs' argument 1 promotes to 'double' where 'int' is expected in a call to built-in function declared without prototype [-Wbuiltin-declaration-mismatch]
+  102 |  if (abs(a->posx - b->posy) < 0.5) {
+      |          ~~~~~~~~^~~~~~~~~
+<built-in>: note: built-in 'abs' declared here
+../Core/Src/motion.c: In function 'my_move':
+../Core/Src/motion.c:124:18: error: 'woolnum' undeclared (first use in this function)
+  124 |    putwool(a, b, woolnum);
+      |                  ^~~~~~~
+../Core/Src/motion.c:124:18: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/motion.c:126:5: warning: implicit declaration of function 'setV'; did you mean 'setv'? [-Wimplicit-function-declaration]
+  126 |     setV(0);
+      |     ^~~~
+      |     setv
+../Core/Src/motion.c: At top level:
+../Core/Src/motion.c:138:6: error: conflicting types for 'my_Move'
+  138 | void my_Move(Position_edc25* path, int size) {
+      |      ^~~~~~~
+In file included from ../Core/Src/motion.c:1:
+../Core/Inc/motion.h:32:8: note: previous declaration of 'my_Move' was here
+   32 |   void my_Move(Position_edc25* path);
+      |        ^~~~~~~
+make: *** [Core/Src/subdir.mk:58: Core/Src/motion.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+11:48:58 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+../Core/Src/motion.c: In function 'rotate':
+../Core/Src/motion.c:66:8: warning: unused variable 'yaw' [-Wunused-variable]
+   66 |  float yaw = GetYaw();
+      |        ^~~
+../Core/Src/motion.c: In function 'putwool':
+../Core/Src/motion.c:102:6: warning: implicit declaration of function 'abs' [-Wimplicit-function-declaration]
+  102 |  if (abs(a->posx - b->posy) < 0.5) {
+      |      ^~~
+../Core/Src/motion.c:102:18: warning: 'abs' argument 1 promotes to 'double' where 'int' is expected in a call to built-in function declared without prototype [-Wbuiltin-declaration-mismatch]
+  102 |  if (abs(a->posx - b->posy) < 0.5) {
+      |          ~~~~~~~~^~~~~~~~~
+<built-in>: note: built-in 'abs' declared here
+../Core/Src/motion.c: In function 'my_move':
+../Core/Src/motion.c:126:5: warning: implicit declaration of function 'setV'; did you mean 'setv'? [-Wimplicit-function-declaration]
+  126 |     setV(0);
+      |     ^~~~
+      |     setv
+../Core/Src/motion.c: At top level:
+../Core/Src/motion.c:138:6: error: conflicting types for 'my_Move'
+  138 | void my_Move(Position_edc25* path, int size) {
+      |      ^~~~~~~
+In file included from ../Core/Src/motion.c:1:
+../Core/Inc/motion.h:34:8: note: previous declaration of 'my_Move' was here
+   34 |   void my_Move(Position_edc25* path);
+      |        ^~~~~~~
+make: *** [Core/Src/subdir.mk:58: Core/Src/motion.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+11:49:38 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+../Core/Src/motion.c: In function 'rotate':
+../Core/Src/motion.c:66:8: warning: unused variable 'yaw' [-Wunused-variable]
+   66 |  float yaw = GetYaw();
+      |        ^~~
+../Core/Src/motion.c: In function 'putwool':
+../Core/Src/motion.c:102:6: warning: implicit declaration of function 'abs' [-Wimplicit-function-declaration]
+  102 |  if (abs(a->posx - b->posy) < 0.5) {
+      |      ^~~
+../Core/Src/motion.c:102:18: warning: 'abs' argument 1 promotes to 'double' where 'int' is expected in a call to built-in function declared without prototype [-Wbuiltin-declaration-mismatch]
+  102 |  if (abs(a->posx - b->posy) < 0.5) {
+      |          ~~~~~~~~^~~~~~~~~
+<built-in>: note: built-in 'abs' declared here
+../Core/Src/motion.c: In function 'my_move':
+../Core/Src/motion.c:126:5: warning: implicit declaration of function 'setV'; did you mean 'setv'? [-Wimplicit-function-declaration]
+  126 |     setV(0);
+      |     ^~~~
+      |     setv
+../Core/Src/motion.c: At top level:
+../Core/Src/motion.c:138:6: error: conflicting types for 'my_Move1'
+  138 | void my_Move1(Position_edc25* path, int size) {
+      |      ^~~~~~~~
+In file included from ../Core/Src/motion.c:1:
+../Core/Inc/motion.h:34:8: note: previous declaration of 'my_Move1' was here
+   34 |   void my_Move1(Position_edc25* path);
+      |        ^~~~~~~~
+make: *** [Core/Src/subdir.mk:58: Core/Src/motion.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+11:51:12 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+../Core/Src/motion.c: In function 'rotate':
+../Core/Src/motion.c:66:8: warning: unused variable 'yaw' [-Wunused-variable]
+   66 |  float yaw = GetYaw();
+      |        ^~~
+../Core/Src/motion.c: In function 'putwool':
+../Core/Src/motion.c:102:6: warning: implicit declaration of function 'abs' [-Wimplicit-function-declaration]
+  102 |  if (abs(a->posx - b->posy) < 0.5) {
+      |      ^~~
+../Core/Src/motion.c:102:18: warning: 'abs' argument 1 promotes to 'double' where 'int' is expected in a call to built-in function declared without prototype [-Wbuiltin-declaration-mismatch]
+  102 |  if (abs(a->posx - b->posy) < 0.5) {
+      |          ~~~~~~~~^~~~~~~~~
+<built-in>: note: built-in 'abs' declared here
+../Core/Src/motion.c: In function 'my_move':
+../Core/Src/motion.c:126:5: warning: implicit declaration of function 'setV'; did you mean 'setv'? [-Wimplicit-function-declaration]
+  126 |     setV(0);
+      |     ^~~~
+      |     setv
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46144	    528	   2848	  49520	   c170	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+11:53:22 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+../Core/Src/motion.c: In function 'rotate':
+../Core/Src/motion.c:66:8: warning: unused variable 'yaw' [-Wunused-variable]
+   66 |  float yaw = GetYaw();
+      |        ^~~
+../Core/Src/motion.c: In function 'putwool':
+../Core/Src/motion.c:102:6: warning: implicit declaration of function 'abs' [-Wimplicit-function-declaration]
+  102 |  if (abs(a->posx - b->posy) < 0.5) {
+      |      ^~~
+../Core/Src/motion.c:102:18: warning: 'abs' argument 1 promotes to 'double' where 'int' is expected in a call to built-in function declared without prototype [-Wbuiltin-declaration-mismatch]
+  102 |  if (abs(a->posx - b->posy) < 0.5) {
+      |          ~~~~~~~~^~~~~~~~~
+<built-in>: note: built-in 'abs' declared here
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46144	    528	   2848	  49520	   c170	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+11:53:51 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+../Core/Src/motion.c: In function 'rotate':
+../Core/Src/motion.c:67:8: warning: unused variable 'yaw' [-Wunused-variable]
+   67 |  float yaw = GetYaw();
+      |        ^~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46144	    528	   2848	  49520	   c170	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+11:54:01 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46144	    528	   2848	  49520	   c170	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+11:59:30 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46344	    528	   2848	  49720	   c238	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+12:04:00 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46168	    528	   2848	  49544	   c188	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+12:17:49 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/zigbee_edc25.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/zigbee_edc25.d" -MT"Core/Src/zigbee_edc25.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/zigbee_edc25.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:179:22: error: 'p0' undeclared (first use in this function)
+  179 |      HAL_Delay(500);;p0
+      |                      ^~
+../Core/Src/main.c:179:22: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:179:24: error: expected ';' before '}' token
+  179 |      HAL_Delay(500);;p0
+      |                        ^
+      |                        ;
+  180 |     }
+      |     ~                   
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/zigbee_edc25.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/zigbee_edc25.c:80:9: warning: implicit declaration of function 'jy62MessageRecord'; did you mean 'zigbeeMessageRecord'? [-Wimplicit-function-declaration]
+   80 |         jy62MessageRecord();
+      |         ^~~~~~~~~~~~~~~~~
+      |         zigbeeMessageRecord
+../Core/Src/zigbee_edc25.c: In function 'getHeightOfAllChunks':
+../Core/Src/zigbee_edc25.c:152:35: warning: passing argument 2 of 'memcpy' makes pointer from integer without a cast [-Wint-conversion]
+  152 |     memcpy(dest, gameStatusMessage[5], 64);
+      |                  ~~~~~~~~~~~~~~~~~^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+In file included from ../Core/Inc/zigbee_edc25.h:5,
+                 from ../Core/Src/zigbee_edc25.c:1:
+g:\stm32cubeide_1.12.1\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\include\string.h:31:35: note: expected 'const void * restrict' but argument is of type 'uint8_t' {aka 'unsigned char'}
+   31 | void *  memcpy (void *__restrict, const void *__restrict, size_t);
+      |                                   ^
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+12:18:18 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46352	    528	   2848	  49728	   c240	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+12:28:07 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46304	    528	   2848	  49680	   c210	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+12:28:58 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46352	    528	   2848	  49728	   c240	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+12:33:09 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46352	    528	   2848	  49728	   c240	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+18:35:36 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+../Core/Src/motion.c: In function 'setdir':
+../Core/Src/motion.c:80:39: error: expected expression before ',' token
+   80 |   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4+, GPIO_PIN_RESET);
+      |                                       ^
+make: *** [Core/Src/subdir.mk:58: Core/Src/motion.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+18:36:14 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46368	    528	   2848	  49744	   c250	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+18:39:51 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46360	    528	   2848	  49736	   c248	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+18:40:37 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46360	    528	   2848	  49736	   c248	motion_control.elf
+Finished building: default.size.stdout
+ 
+18:42:23 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46360	    528	   2848	  49736	   c248	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+18:48:17 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46360	    528	   2848	  49736	   c248	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+18:54:24 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46360	    528	   2848	  49736	   c248	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+18:54:46 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46360	    528	   2848	  49736	   c248	motion_control.elf
+Finished building: default.size.stdout
+ 
+19:02:18 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46368	    528	   2848	  49744	   c250	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:04:43 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46368	    528	   2848	  49744	   c250	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:07:37 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46384	    528	   2848	  49760	   c260	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:08:22 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46384	    528	   2848	  49760	   c260	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:11:03 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46400	    528	   2848	  49776	   c270	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:35:28 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46584	    528	   2848	  49960	   c328	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:37:44 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46576	    528	   2848	  49952	   c320	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:44:12 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46880	    528	   2848	  50256	   c450	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:49:20 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+../Core/Src/motion.c: In function 'check_yaw':
+../Core/Src/motion.c:31:9: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+   31 |  while (Yaw=0){
+      |         ^~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46912	    528	   2848	  50288	   c470	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:49:46 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46904	    528	   2848	  50280	   c468	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:50:12 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46904	    528	   2848	  50280	   c468	motion_control.elf
+Finished building: default.size.stdout
+ 
+19:55:13 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46824	    528	   2848	  50200	   c418	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:55:25 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46824	    528	   2848	  50200	   c418	motion_control.elf
+Finished building: default.size.stdout
+ 
+19:57:23 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46824	    528	   2848	  50200	   c418	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+19:59:03 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46816	    528	   2848	  50192	   c410	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+20:06:07 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46872	    528	   2848	  50248	   c448	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+20:13:45 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46912	    528	   2848	  50288	   c470	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+20:14:03 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46912	    528	   2848	  50288	   c470	motion_control.elf
+Finished building: default.size.stdout
+ 
+20:14:15 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46912	    528	   2848	  50288	   c470	motion_control.elf
+Finished building: default.size.stdout
+ 
+20:14:29 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46912	    528	   2848	  50288	   c470	motion_control.elf
+Finished building: default.size.stdout
+ 
+20:14:46 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46912	    528	   2848	  50288	   c470	motion_control.elf
+Finished building: default.size.stdout
+ 
+20:15:00 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46912	    528	   2848	  50288	   c470	motion_control.elf
+Finished building: default.size.stdout
+ 
+20:15:25 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46912	    528	   2848	  50288	   c470	motion_control.elf
+Finished building: default.size.stdout
+ 
+20:23:09 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46880	    528	   2848	  50256	   c450	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+20:25:49 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46880	    528	   2848	  50256	   c450	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+21:59:16 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/dma.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/dma.d" -MT"Core/Src/dma.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/dma.o"
+arm-none-eabi-gcc "../Core/Src/jy62.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/jy62.d" -MT"Core/Src/jy62.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/jy62.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/motion.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motion.d" -MT"Core/Src/motion.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/motion.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/usart.o"
+arm-none-eabi-gcc "../Core/Src/zigbee_edc25.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/zigbee_edc25.d" -MT"Core/Src/zigbee_edc25.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/zigbee_edc25.o"
+../Core/Src/jy62.c: In function 'jy62_Init':
+../Core/Src/jy62.c:24:37: warning: passing argument 2 of 'HAL_UART_Receive_DMA' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   24 |     HAL_UART_Receive_DMA(jy62_huart,jy62Receive,JY62_MESSAGE_LENTH);
+      |                                     ^~~~~~~~~~~
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/jy62.h:23,
+                 from ../Core/Src/jy62.c:1:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:754:76: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
+  754 | HAL_StatusTypeDef HAL_UART_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~^~~~~
+../Core/Src/jy62.c: In function 'jy62MessageRecord':
+../Core/Src/jy62.c:45:34: warning: passing argument 2 of 'HAL_UART_Receive_DMA' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   45 |  HAL_UART_Receive_DMA(jy62_huart,jy62Receive,JY62_MESSAGE_LENTH);
+      |                                  ^~~~~~~~~~~
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/jy62.h:23,
+                 from ../Core/Src/jy62.c:1:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:754:76: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
+  754 | HAL_StatusTypeDef HAL_UART_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~^~~~~
+../Core/Src/zigbee_edc25.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/zigbee_edc25.c:80:9: warning: implicit declaration of function 'jy62MessageRecord'; did you mean 'zigbeeMessageRecord'? [-Wimplicit-function-declaration]
+   80 |         jy62MessageRecord();
+      |         ^~~~~~~~~~~~~~~~~
+      |         zigbeeMessageRecord
+../Core/Src/zigbee_edc25.c: In function 'getHeightOfAllChunks':
+../Core/Src/zigbee_edc25.c:152:35: warning: passing argument 2 of 'memcpy' makes pointer from integer without a cast [-Wint-conversion]
+  152 |     memcpy(dest, gameStatusMessage[5], 64);
+      |                  ~~~~~~~~~~~~~~~~~^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+In file included from ../Core/Inc/zigbee_edc25.h:5,
+                 from ../Core/Src/zigbee_edc25.c:1:
+g:\stm32cubeide_1.12.1\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\include\string.h:31:35: note: expected 'const void * restrict' but argument is of type 'uint8_t' {aka 'unsigned char'}
+   31 | void *  memcpy (void *__restrict, const void *__restrict, size_t);
+      |                                   ^
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  47280	    528	   2984	  50792	   c668	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+22:29:16 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/usart.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:152:7: warning: unused variable 'flag' [-Wunused-variable]
+  152 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46416	    528	   3048	  49992	   c348	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+22:30:40 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:101:12: warning: unused variable 'yaw' [-Wunused-variable]
+  101 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:100:12: warning: unused variable 'pitch' [-Wunused-variable]
+  100 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:99:12: warning: unused variable 'roll' [-Wunused-variable]
+   99 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:152:7: warning: unused variable 'flag' [-Wunused-variable]
+  152 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46328	    528	   3048	  49904	   c2f0	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+22:30:56 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46328	    528	   3048	  49904	   c2f0	motion_control.elf
+Finished building: default.size.stdout
+ 
+22:31:08 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46328	    528	   3048	  49904	   c2f0	motion_control.elf
+Finished building: default.size.stdout
+ 
+22:37:37 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:101:12: warning: unused variable 'yaw' [-Wunused-variable]
+  101 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:100:12: warning: unused variable 'pitch' [-Wunused-variable]
+  100 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:99:12: warning: unused variable 'roll' [-Wunused-variable]
+   99 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:152:7: warning: unused variable 'flag' [-Wunused-variable]
+  152 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46328	    528	   3056	  49912	   c2f8	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+22:47:50 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:101:12: warning: unused variable 'yaw' [-Wunused-variable]
+  101 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:100:12: warning: unused variable 'pitch' [-Wunused-variable]
+  100 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:99:12: warning: unused variable 'roll' [-Wunused-variable]
+   99 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:152:7: warning: unused variable 'flag' [-Wunused-variable]
+  152 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46328	    528	   3048	  49904	   c2f0	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+23:04:27 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:101:12: warning: unused variable 'yaw' [-Wunused-variable]
+  101 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:100:12: warning: unused variable 'pitch' [-Wunused-variable]
+  100 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:99:12: warning: unused variable 'roll' [-Wunused-variable]
+   99 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:152:7: warning: unused variable 'flag' [-Wunused-variable]
+  152 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46248	    528	   3048	  49824	   c2a0	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+23:52:48 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46584	    528	   3128	  50240	   c440	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+00:10:19 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46592	    528	   3128	  50248	   c448	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+00:12:56 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:181:4: warning: this 'while' clause does not guard... [-Wmisleading-indentation]
+  181 |    while (HAL_UART_Receive(&huart4, u4_RX_Buf, sizeof(u4_RX_Buf), HAL_MAX_DELAY) != HAL_OK);
+      |    ^~~~~
+../Core/Src/main.c:182:12: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'while'
+  182 |            u1_printf("received:"); // 转发到串�?1
+      |            ^~~~~~~~~
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46248	    528	   3056	  49832	   c2a8	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+00:35:17 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:181:4: warning: this 'while' clause does not guard... [-Wmisleading-indentation]
+  181 |    while (HAL_UART_Receive(&huart4, u4_RX_Buf, sizeof(u4_RX_Buf), HAL_MAX_DELAY) != HAL_OK);
+      |    ^~~~~
+../Core/Src/main.c:182:12: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'while'
+  182 |            u1_printf("received:"); // 转发到串�?1
+      |            ^~~~~~~~~
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46248	    528	   2992	  49768	   c268	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+00:44:35 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:181:4: warning: this 'while' clause does not guard... [-Wmisleading-indentation]
+  181 |    while (HAL_UART_Receive(&huart4, u4_RX_Buf, sizeof(u4_RX_Buf), HAL_MAX_DELAY) != HAL_OK);
+      |    ^~~~~
+../Core/Src/main.c:182:12: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'while'
+  182 |            u1_printf("received:"); // 转发到串�?1
+      |            ^~~~~~~~~
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46248	    528	   3056	  49832	   c2a8	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+00:45:57 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46592	    528	   3128	  50248	   c448	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+00:46:10 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46592	    528	   3128	  50248	   c448	motion_control.elf
+Finished building: default.size.stdout
+ 
+00:48:22 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46592	    528	   3128	  50248	   c448	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+00:50:36 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46592	    528	   3128	  50248	   c448	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+00:51:01 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-size   motion_control.elf 
+   text	   data	    bss	    dec	    hex	filename
+  46592	    528	   3128	  50248	   c448	motion_control.elf
+Finished building: default.size.stdout
+ 
+00:54:49 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:181:4: warning: this 'while' clause does not guard... [-Wmisleading-indentation]
+  181 |    while (HAL_UART_Receive(&huart4, u4_RX_Buf, sizeof(u4_RX_Buf), 100) != HAL_OK);
+      |    ^~~~~
+../Core/Src/main.c:182:12: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'while'
+  182 |            u1_printf("received:"); // 转发到串�?1
+      |            ^~~~~~~~~
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46240	    528	   3056	  49824	   c2a0	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+00:59:18 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:181:4: warning: this 'while' clause does not guard... [-Wmisleading-indentation]
+  181 |    while (HAL_UART_Receive(&huart2, u4_RX_Buf, sizeof(u4_RX_Buf), 100) != HAL_OK);
+      |    ^~~~~
+../Core/Src/main.c:182:12: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'while'
+  182 |            u1_printf("received:"); // 转发到串�?1
+      |            ^~~~~~~~~
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46240	    528	   3056	  49824	   c2a0	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+01:08:32 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46288	    528	   3056	  49872	   c2d0	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+01:15:22 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46288	    528	   3056	  49872	   c2d0	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+01:15:45 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46288	    528	   3056	  49872	   c2d0	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+01:17:55 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46288	    528	   3056	  49872	   c2d0	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+01:24:14 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46288	    528	   3056	  49872	   c2d0	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 
+01:33:11 **** Incremental Build of configuration Debug for project motion_control ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
+  105 |      float yaw = GetYaw();
+      |            ^~~
+../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
+  104 |      float pitch = GetPitch();
+      |            ^~~~~
+../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
+  103 |      float roll = GetRoll();
+      |            ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
+  156 |   int flag=1;
+      |       ^~~~
+arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: motion_control.elf
+ 
+arm-none-eabi-size   motion_control.elf 
+arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
+   text	   data	    bss	    dec	    hex	filename
+  46408	    528	   3064	  50000	   c350	motion_control.elf
+Finished building: default.size.stdout
+ 
+Finished building: motion_control.list
+ 

@@ -73,7 +73,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
         memcpy(zigbeeMsgPtr, rawPtr, sizeof(uint8_t) * MAX_MSG_LEN / 2);
         memPtr = modularAdd(MAX_MSG_LEN / 2, memPtr, MAX_MSG_LEN * 2);
         zigbeeMessageRecord();
-    } else if (huart == &huart3)
+    } else if (huart == &huart2)
         //我这⾥�?�择的是uart2�??以这⾥⽤的是&huart2，其实应该是⼤家选择哪个串⼝就填写哪�??
     {
         //u1_printf("callback!");

@@ -7,6 +7,7 @@ extern "C" {
   // 这里放置 C 语言代码，例如函数声明、结构体定义等
 #include "main.h"
 #include "zigbee_edc25.h"
+#include "stdbool.h"
 //全局变量
   extern float vset;
   extern unsigned int my_time;
@@ -29,7 +30,10 @@ extern "C" {
   void move_time(int dir, int t, int v);//dir:0向前，1向后；单位：ms,单位：cm/s
   void setdir(int dir);
   void rotate(int dir, float angle);
-  void my_Move(Position_edc25* path);
+  bool my_move(Position_edc25* a, Position_edc25* b) ;
+  void my_Move(Position_edc25* path, int size);
+  void check_yaw(float max_err);
+
 #ifdef __cplusplus
 }
 #endif

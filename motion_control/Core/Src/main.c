@@ -48,6 +48,10 @@
 
 /* USER CODE BEGIN PV */
 
+uint8_t u4_RX_Buf[76];
+uint8_t last_Buf[66];
+int readyed=0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -77,7 +81,7 @@ float pid(pidstr *a,float dr)//用于更新PWM的占空比
   }
 }
 
-//这个刚刚加过了，只是告诉读�?�应该放�???
+//这个刚刚加过了，只是告诉读�?�应该放�?????
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(htim->Instance==TIM2)
 	  {
@@ -97,9 +101,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_3, temp);
 	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_4, temp);
 	    float roll = GetRoll();
-	    	  float pitch = GetPitch();
-	    	  float yaw = GetYaw();
-	    	  u1_printf("ROW: %f, PITCH:%f, YAW:%f\r\n", roll, pitch, yaw);
+	    float pitch = GetPitch();
+	    float yaw = GetYaw();
+	    //u1_printf("ROW: %f, PITCH:%f, YAW:%f\r\n", roll, pitch, yaw);
 	   }
 }
 void jy62_Init(UART_HandleTypeDef* huart);
@@ -140,15 +144,17 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
+  MX_UART4_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start_IT(&htim2); // 使能定时�???2
+  HAL_TIM_Base_Start_IT(&htim2); // 使能定时�?????2
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);// 使能定定时器1的�?�道1，设定为PWM输出
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-  HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL); //使能编码器时�???3
+  HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL); //使能编码器时�?????3
+
   int flag=1;
-  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_SET);//设置四个电机的转�???
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_SET);//设置四个电机的转�?????
   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_RESET);
   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_2,GPIO_PIN_SET);
   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,GPIO_PIN_RESET);
@@ -161,21 +167,101 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   SetBaud(115200);
-  SetHorizontal();
+  SetVertical();
   InitAngle();
   Calibrate();
   SleepOrAwake();
   jy62_Init(&huart2);
+
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_Delay(1000);
-	  if(flag){
-	  	move_time(0,1000,60);
-	  	flag=0;
+	  while(!readyed){
+		  while (HAL_UART_Receive(&huart4, u4_RX_Buf, sizeof(u4_RX_Buf), 100) != HAL_OK);
+		  u1_printf("received:"); // 转发到串口1
+		  HAL_UART_Transmit(&huart1, u4_RX_Buf, sizeof(u4_RX_Buf), HAL_MAX_DELAY);
+		  if(u4_RX_Buf[0]=='x')
+			  {readyed=1;
+		  u1_printf("\n find\n");}
+		  int slow = 0;
+		  for(int i = 0; i < 76; i++) {
+			  char c = u4_RX_Buf[i];
+			  if(c=='y')
+				  break;
+			  if(c-'0'>=0&&c - '0' < 10) {
+				  u4_RX_Buf[slow] = c;
+				  slow++;
+			  }
+		  }
+		  for(int i = 0; i < 64; i++)
+			  u1_printf("%c", u4_RX_Buf[i]);
 	  }
+
+//	  if(!readyed){
+//		  while(!readyed){
+//			  	  u1_printf("received:");
+//		  		  while (HAL_UART_Receive(&huart4, u4_RX_Buf, sizeof(u4_RX_Buf),100) != HAL_OK);
+//		  		  u1_printf("received:"); // 转发到串口1
+//		  		  HAL_UART_Transmit(&huart1, u4_RX_Buf, sizeof(u4_RX_Buf), HAL_MAX_DELAY);
+//		  		  for(int i=0;i<66;i++){
+//		  			  if(u4_RX_Buf[i]=='y'){
+//		  				  readyed=1;
+//		  			  }
+//		  		  }
+//		  		  if(!readyed){
+//		  			  for(int i=0;i<664;i++){
+//		  				  last_Buf[i]=u4_RX_Buf[i];
+//		  			  }
+//		  		  }
+//		  	  }
+//		  	  int slow = 0;
+//		  	  int finded = 0;
+//		  	  for(int i=0;i<66;i++){
+//		  		  if(last_Buf[i]=='x') {
+//		  			  finded = 1;
+//		  			  continue;
+//		  		  }
+//		  		  if(finded) {
+//		  			  last_Buf[slow] = last_Buf[i];
+//		  			  slow++;
+//		  		  }
+//		  	  }
+//		  	  for(int i=0;i<66;i++){
+//		  		  if(finded) {
+//		  			  last_Buf[slow] = u4_RX_Buf[i];
+//		  			  slow++;
+//		  			  if(slow == 64)
+//		  				  break;
+//		  		  }
+//		  		  else{
+//		  			  for(int j=0;j<64;j++){
+//		  				  last_Buf[j]=u4_RX_Buf[j+1];
+//		  			  }
+//		  			  break;
+//		  		  }
+//		  	  }
+//		  	  u1_printf("\n received:"); // 转发到串口1
+//		  	  for(int i=0;i<64;i++){
+//		  		  u1_printf("%c",last_Buf[i]);
+//		  	  }
+//	  }
+
+
+
+//	  int dir=0;
+//	  InitAngle();
+//	  if(flag&&GetPitch()!=0){
+//		  for(int i=0;i<4;i++){
+//			  move_time(dir+4,600,30);
+//			  //dir=!dir;
+//			  HAL_Delay(500);
+//		  }
+//		  check_yaw(5);
+//		  flag=0;
+//	  }
+
   }
   /* USER CODE END 3 */
 }
