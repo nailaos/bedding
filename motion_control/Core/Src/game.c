@@ -8,7 +8,7 @@
 int myMap[8][8] = { 0 };
 int visited[8][8];
 Position_edc25* myPath;
-int myBase[2] = { 0, 0 };
+int myBase[2] = { 7, 7 };
 int pathLen;
 int dx[4] = { 0, 1, 0, -1 };
 int dy[4] = { 1, 0, -1, 0 };
@@ -224,22 +224,21 @@ void myTrade() {
 void executeTask(int x) {
     if (x == 0) {
         printMap();
-        printPath();
-        myMove();
-        int res = myMove();
-        if (res)
-            myTrade();
-        else
-            moveHome();
+        // printPath();
+        // int res = myMove();
+        // if (res)
+        //     myTrade();
+        // else
+        //     moveHome();
     }
 }
 
 void gameRun() {
     myPath = (Position_edc25*)calloc(64, sizeof(Position_edc25));
-    Position_edc25 curr;
-    getPosition(&curr);
-    myBase[0] = (int)curr.posx;
-    myBase[1] = (int)curr.posy;
+    //Position_edc25 curr;
+    // getPosition(&curr);
+    // myBase[0] = (int)curr.posx;
+    // myBase[1] = (int)curr.posy;
     while (1) {
         int res = decide();
         executeTask(res);
