@@ -5,16 +5,16 @@
 #define SPE 30
 #define WOOL 16
 
-int myMap[8][8];
+int myMap[8][8] = {0};
 int visited[8][8];
 Position_edc25* myPath;
 int myBase[2] = { 0, 0 };
 int pathLen;
-int dx[4] = { 1, 0, -1, 0 };
-int dy[4] = { 0, 1, 0, -1 };
+int dx[4] = { 0, 1, 0, -1 };
+int dy[4] = { 1, 0, -1, 0 };
 int maxMinerNum = 0;
 int tryNum = 0;
-int upperLimit;
+int upperLimit = 56;
 
 void initMap(char* mapInfo) {
     for (int i = 0; i < 64; i++) {
@@ -27,9 +27,12 @@ void initMap(char* mapInfo) {
 }
 
 void printMap() {
+	myMap[2][2] = 4;
+	myMap[3][3] = 8;
+	myMap[4][4] = 16;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++)
-            u1_printf("%2d ", myMap[i][j]);
+            u1_printf("%d ", myMap[i][j]);
         u1_printf("\n");
     }
 }
@@ -47,8 +50,8 @@ int findPath(int x, int y, int currMiner, int woolNum, Position_edc25* path, int
     if (woolNum == 0) {
         if (currMiner > maxMinerNum) {
             maxMinerNum = currMiner;
-            path[*len].posx = (float)x;
-            path[*len].posy = (float)y;
+            path[*len].posx = (float)y;
+            path[*len].posy = (float)x;
             *len = *len + 1;
             pathLen = *len;
             for (int i = 0; i < pathLen; i++)
@@ -68,8 +71,8 @@ int findPath(int x, int y, int currMiner, int woolNum, Position_edc25* path, int
             continue;
         if (visited[nx][ny])
             continue;
-        path[*len].posx = (float)x;
-        path[*len].posy = (float)y;
+        path[*len].posx = (float)y;
+        path[*len].posy = (float)x;
         *len = *len + 1;
         if (findPath(nx, ny, currMiner, woolNum - 1, path, len))
             return 1;
@@ -83,8 +86,8 @@ void printPath() {
     u1_printf("final length of path is %d\n", pathLen);
 
     for (int i = 0; i < pathLen; i++) {
-        u1_printf("[%f, %f]", myPath[i].x, myPath[i].y);
-        if (i < n - 1)
+        u1_printf("[%f, %f]", myPath[i].posx, myPath[i].posy);
+        if (i < pathLen - 1)
             u1_printf("->");
     }
     u1_printf("\n");
@@ -94,9 +97,9 @@ void printPath() {
 }
 
 int arrive(Position_edc25* from, Position_edc25* to) {
-    Position_edc25* curr = (Position_edc25*)calloc(sizeof(Position_edc25));
-    getPosition(curr);
-    float distance = (to->posx - curr->posx) * (to->posy - curr->posy);
+    Position_edc25 curr;
+    getPosition(&curr);
+    float distance = (to->posx - curr.posx) * (to->posy - curr.posy);
     if (distance < LEN)
         return 1;
     return 0;
@@ -107,9 +110,9 @@ int accident() {
 }
 
 int putWool(Position_edc25* from, Position_edc25* to) {
-    Position_edc25* curr = (Position_edc25*)calloc(sizeof(Position_edc25));
-    getPosition(curr);
-    int id = getMapId(curr);
+    Position_edc25 curr;
+    getPosition(&curr);
+    int id = getMapId(&curr);
     if (abs(from->posx - to->posx) < 0.5) {
         if (from->posy > to->posy)
             id -= 1;
@@ -146,9 +149,6 @@ int mymove(Position_edc25* from, Position_edc25* to) {
 int myMove() {
     for (int i = 1; i < pathLen; i++)
         if (!mymove(&myPath[i - 1], &myPath[i]))
-            return -1;
-    for (int i = pathLen - 1; i > 0; i--)
-        if (!mymove(&myPath[i], &myPath[i - 1]))
             return 0;
     return 1;
 }
@@ -156,7 +156,11 @@ int myMove() {
 int decide() {
     Position_edc25* tmp = (Position_edc25*)calloc(64, sizeof(Position_edc25));
     int len = 0;
-    findPath(myBase[0], myBase[0], 0, getWoolCount(), tmp, &len);
+    for(int i = 0; i < 8; i++)
+    	for(int j = 0; j < 8; j++)
+    		visited[i][j] = 0;
+    tryNum = 0;
+    findPath(myBase[0], myBase[1], 0, 8, tmp, &len);
     free(tmp);
     return 0;
 }
@@ -167,6 +171,7 @@ void myTrade() {
 
 void executeTask(int x) {
     if (x == 0) {
+    	printMap();
         printPath();
         myMove();
         int res = myMove();
