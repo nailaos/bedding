@@ -1,4 +1,5 @@
 #include "game.h"
+#include "usart.h"
 #include <stdlib.h>
 
 #define SPE 30
@@ -25,6 +26,15 @@ void initMap(char* mapInfo) {
     }
 }
 
+void printMap() {
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++)
+            u1_printf("%2d ", myMap[i][j]);
+        u1_printf("\n");
+    }
+}
+
+
 int getMapId(Position_edc25* points) {
     int x = (int)points->posx;
     int y = (int)points->posy;
@@ -39,11 +49,11 @@ int findPath(int x, int y, int currMiner, int woolNum, Position_edc25* path, int
             maxMinerNum = currMiner;
             path[*len].posx = (float)x;
             path[*len].posy = (float)y;
-            *len = *len +1;
+            *len = *len + 1;
             pathLen = *len;
             for (int i = 0; i < pathLen; i++)
                 myPath[i] = path[i];
-            *len = *len -1;
+            *len = *len - 1;
             if (maxMinerNum == upperLimit / 2)
                 return 1;
         }
@@ -69,8 +79,22 @@ int findPath(int x, int y, int currMiner, int woolNum, Position_edc25* path, int
     return 0;
 }
 
+void printPath() {
+    u1_printf("final length of path is %d\n", pathLen);
+
+    for (int i = 0; i < pathLen; i++) {
+        u1_printf("[%f, %f]", myPath[i].x, myPath[i].y);
+        if (i < n - 1)
+            u1_printf("->");
+    }
+    u1_printf("\n");
+
+    u1_printf("tryNum is %d\n", tryNum);
+    u1_printf("the max mineral is %d\n", maxMinerNum);
+}
+
 int arrive(Position_edc25* from, Position_edc25* to) {
-    Position_edc25* curr;
+    Position_edc25* curr = (Position_edc25*)calloc(sizeof(Position_edc25));
     getPosition(curr);
     float distance = (to->posx - curr->posx) * (to->posy - curr->posy);
     if (distance < LEN)
@@ -83,7 +107,7 @@ int accident() {
 }
 
 int putWool(Position_edc25* from, Position_edc25* to) {
-    Position_edc25* curr;
+    Position_edc25* curr = (Position_edc25*)calloc(sizeof(Position_edc25));
     getPosition(curr);
     int id = getMapId(curr);
     if (abs(from->posx - to->posx) < 0.5) {
@@ -143,6 +167,7 @@ void myTrade() {
 
 void executeTask(int x) {
     if (x == 0) {
+        printPath();
         myMove();
         int res = myMove();
         if (res)
