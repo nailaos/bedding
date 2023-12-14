@@ -5,13 +5,14 @@
 #define SPE 30
 #define WOOL 16
 
-int myMap[8][8] = {0};
+int myMap[8][8] = { 0 };
 int visited[8][8];
 Position_edc25* myPath;
 int myBase[2] = { 0, 0 };
 int pathLen;
 int dx[4] = { 0, 1, 0, -1 };
 int dy[4] = { 1, 0, -1, 0 };
+int consume[5] = { 32, 32,64,2,4 };
 int maxMinerNum = 0;
 int tryNum = 0;
 int upperLimit = 56;
@@ -27,9 +28,6 @@ void initMap(char* mapInfo) {
 }
 
 void printMap() {
-	myMap[2][2] = 4;
-	myMap[3][3] = 8;
-	myMap[4][4] = 16;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++)
             u1_printf("%d ", myMap[i][j]);
@@ -106,6 +104,8 @@ int arrive(Position_edc25* from, Position_edc25* to) {
 }
 
 int accident() {
+    if (!getHealth())
+        return 1;
     return 0;
 }
 
@@ -150,33 +150,56 @@ int myMove() {
     for (int i = 1; i < pathLen; i++)
         if (!mymove(&myPath[i - 1], &myPath[i]))
             return 0;
+    for (int i = pathLen - 1; i > 0; i--)
+        if (!mymove(&myPath[i], &myPath[i - 1]))
+            return 0;
     return 1;
+}
+
+void moveHome() {
+    u1_printf("go to home\n");
 }
 
 int decide() {
     Position_edc25* tmp = (Position_edc25*)calloc(64, sizeof(Position_edc25));
     int len = 0;
-    for(int i = 0; i < 8; i++)
-    	for(int j = 0; j < 8; j++)
-    		visited[i][j] = 0;
+    for (int i = 0; i < 8; i++)
+        for (int j = 0; j < 8; j++)
+            visited[i][j] = 0;
     tryNum = 0;
     findPath(myBase[0], myBase[1], 0, 8, tmp, &len);
     free(tmp);
     return 0;
 }
 
-void myTrade() {
+int availableBuy(int x) {
+    return getEmeraldCount() > consume[x];
+}
 
+void myTrade() {
+    int woolcount = getWoolCount();
+    if (woolcount < WOOL / 2) {
+        for (int i = 0; i < WOOL - woolcount; i++) {
+            if (!availableBuy(x))
+                break;
+            trade_id(3);
+        }
+    }
+    while (availableBuy(1)) {
+        trade_id(1);
+    }
 }
 
 void executeTask(int x) {
     if (x == 0) {
-    	printMap();
+        printMap();
         printPath();
         myMove();
         int res = myMove();
         if (res)
             myTrade();
+        else
+            moveHome();
     }
 }
 
