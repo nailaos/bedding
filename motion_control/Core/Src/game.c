@@ -110,20 +110,20 @@ int accident() {
 }
 
 int putWool(Position_edc25* from, Position_edc25* to) {
-    Position_edc25 curr;
-    getPosition(&curr);
-    int id = getMapId(&curr);
-    if (abs(from->posx - to->posx) < 0.5) {
-        if (from->posy > to->posy)
-            id -= 1;
-        else
-            id += 1;
-    } else {
-        if (from->posx > to->posx)
-            id -= 8;
-        else
-            id += 8;
-    }
+    // Position_edc25 curr;
+    // getPosition(&curr);
+    int id = getMapId(to);
+    // if (abs(from->posx - to->posx) < 0.5) {
+    //     if (from->posy > to->posy)
+    //         id -= 8;
+    //     else
+    //         id += 8;
+    // } else {
+    //     if (from->posx > to->posx)
+    //         id -= 1;
+    //     else
+    //         id += 1;
+    // }
     if (!getHeightOfId(id)) {
         if (getWoolCount() == 0)
             return 0;
@@ -158,6 +158,7 @@ int myMove() {
 
 void moveHome() {
     u1_printf("go to home\n");
+    Position_edc25
 }
 
 int decide() {
