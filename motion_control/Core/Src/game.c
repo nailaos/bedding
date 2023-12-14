@@ -1,6 +1,7 @@
 #include "game.h"
+#include <stdlib.h>
 
-#define SPEED 30
+#define SPE 30
 #define WOOL 16
 
 int myMap[8][8];
@@ -25,8 +26,8 @@ void initMap(char* mapInfo) {
 }
 
 int getMapId(Position_edc25* points) {
-    int x = (int)points.x;
-    int y = (int)points.y;
+    int x = (int)points->posx;
+    int y = (int)points->posy;
     return 8 * y + x;
 }
 
@@ -38,11 +39,11 @@ int findPath(int x, int y, int currMiner, int woolNum, Position_edc25* path, int
             maxMinerNum = currMiner;
             path[*len].posx = (float)x;
             path[*len].posy = (float)y;
-            *len++;
+            *len = *len +1;
             pathLen = *len;
             for (int i = 0; i < pathLen; i++)
                 myPath[i] = path[i];
-            *len--;
+            *len = *len -1;
             if (maxMinerNum == upperLimit / 2)
                 return 1;
         }
@@ -51,27 +52,27 @@ int findPath(int x, int y, int currMiner, int woolNum, Position_edc25* path, int
         return 0;
     }
     for (int i = 0; i < 4; i++) {
-        int nx = x + directX[i];
-        int ny = y + directY[i];
+        int nx = x + dx[i];
+        int ny = y + dy[i];
         if (nx < 0 || nx>7 || ny < 0 || ny > 7)
             continue;
         if (visited[nx][ny])
             continue;
         path[*len].posx = (float)x;
         path[*len].posy = (float)y;
-        *len++;
+        *len = *len + 1;
         if (findPath(nx, ny, currMiner, woolNum - 1, path, len))
             return 1;
-        *len--;
+        *len = *len - 1;
     }
     visited[x][y] = 0;
     return 0;
 }
 
 int arrive(Position_edc25* from, Position_edc25* to) {
-    Position_edc25* curr = new Position_edc25;
-    getPosition(&curr);
-    float distance = (to.x - curr.x) * (to.y - curr.y);
+    Position_edc25* curr;
+    getPosition(curr);
+    float distance = (to->posx - curr->posx) * (to->posy - curr->posy);
     if (distance < LEN)
         return 1;
     return 0;
@@ -82,16 +83,16 @@ int accident() {
 }
 
 int putWool(Position_edc25* from, Position_edc25* to) {
-    Position_edc25* curr = new Position_edc25;
-    getPosition(&curr);
+    Position_edc25* curr;
+    getPosition(curr);
     int id = getMapId(curr);
-    if (abs(from.x - to.x) < 0.5) {
-        if (from.y > to.y)
+    if (abs(from->posx - to->posx) < 0.5) {
+        if (from->posy > to->posy)
             id -= 1;
         else
             id += 1;
     } else {
-        if (from.x > to.x)
+        if (from->posx > to->posx)
             id -= 8;
         else
             id += 8;
@@ -106,7 +107,7 @@ int putWool(Position_edc25* from, Position_edc25* to) {
 }
 
 int mymove(Position_edc25* from, Position_edc25* to) {
-    setv(SPEED);
+    setv(SPE);
     //rotate
     while (!arrive(from, to)) {
         if (!putWool(from, to) || accident()) {
@@ -114,7 +115,7 @@ int mymove(Position_edc25* from, Position_edc25* to) {
             return 0;
         }
     }
-    setSpeed(0);
+    setv(0);
     return 1;
 }
 
@@ -129,7 +130,7 @@ int myMove() {
 }
 
 int decide() {
-    Position_edc25* tmp = (Position_edc25*)calloc(64, sizeof(Position_edc25 = ));
+    Position_edc25* tmp = (Position_edc25*)calloc(64, sizeof(Position_edc25));
     int len = 0;
     findPath(myBase[0], myBase[0], 0, getWoolCount(), tmp, &len);
     free(tmp);
@@ -142,7 +143,7 @@ void myTrade() {
 
 void executeTask(int x) {
     if (x == 0) {
-        findPath();
+        myMove();
         int res = myMove();
         if (res)
             myTrade();
@@ -150,7 +151,7 @@ void executeTask(int x) {
 }
 
 void gameRun() {
-    myPath = (Position_edc25*)calloc(64, sizeof(Position_edc25 = ));
+    myPath = (Position_edc25*)calloc(64, sizeof(Position_edc25));
     while (1) {
         int res = decide();
         executeTask(res);
