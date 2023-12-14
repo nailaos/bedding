@@ -2,7 +2,7 @@
 #include "usart.h"
 #include <stdlib.h>
 
-#define SPE 30
+#define SPE 20
 #define WOOL 16
 
 int myMap[8][8] = { 0 };
@@ -104,8 +104,10 @@ int arrive(Position_edc25* from, Position_edc25* to) {
 }
 
 int accident() {
-    if (!getHealth())
+    if (!getHealth()) {
+        u1_printf("accident\n");
         return 1;
+    }
     return 0;
 }
 
@@ -133,9 +135,37 @@ int putWool(Position_edc25* from, Position_edc25* to) {
     return 1;
 }
 
+int getdir(Position_edc25* from, Position_edc25* to) {
+    if (myBase[0] == 0) {
+        if (abs(from->posx - to->posx) < 0.5) {
+            if (to->posy > from->posy)
+                return 0;
+            else
+                return 1;
+        } else {
+            if (to->posx < from->posx)
+                return 2;
+            else
+                return 3;
+        }
+    } else {
+        if (abs(from->posx - to->posx) < 0.5) {
+            if (to->posy > from->posy)
+                return 1;
+            else
+                return 0;
+        } else {
+            if (to->posx < from->posx)
+                return 3;
+            else
+                return 2;
+        }
+    }
+}
+
 int mymove(Position_edc25* from, Position_edc25* to) {
     setv(SPE);
-    //rotate
+    setdir(getdir());
     while (!arrive(from, to)) {
         if (!putWool(from, to) || accident()) {
             setv(0);
@@ -206,6 +236,10 @@ void executeTask(int x) {
 
 void gameRun() {
     myPath = (Position_edc25*)calloc(64, sizeof(Position_edc25));
+    Position_edc25 curr;
+    getPosition(&curr);
+    myBase[0] = (int)curr.posx;
+    myBase[1] = (int)curr.posy;
     while (1) {
         int res = decide();
         executeTask(res);
