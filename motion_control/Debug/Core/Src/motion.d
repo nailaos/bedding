@@ -24,8 +24,7 @@ Core/Src/motion.o: ../Core/Src/motion.c ../Core/Inc/motion.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
- ../Core/Inc/zigbee_edc25.h ../Core/Inc/jy62.h ../Core/Inc/usart.h \
- ../Core/Inc/decision.h
+ ../Core/Inc/zigbee_edc25.h ../Core/Inc/jy62.h ../Core/Inc/usart.h
 ../Core/Inc/motion.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -56,4 +55,3 @@ Core/Src/motion.o: ../Core/Src/motion.c ../Core/Inc/motion.h \
 ../Core/Inc/zigbee_edc25.h:
 ../Core/Inc/jy62.h:
 ../Core/Inc/usart.h:
-../Core/Inc/decision.h:

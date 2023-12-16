@@ -1,0 +1,116 @@
+#include "logic.h"
+#include "usart.h"
+#include <stdlib.h>
+
+#define SPE 20
+Position_edc25 Base;
+Position_edc25 my_pos;
+Position_edc25 target;
+Position_edc25 path[50];
+
+int getMapId_new(Position_edc25* points) {
+    int x = (int)points->posx;
+    int y = (int)points->posy;
+    return 8 * x + y;
+}
+int getdir_new(Position_edc25* from, Position_edc25* to) {
+    if (Base.posx == 0.5) {
+        if (abs(from->posx - to->posx) < 0.5) {
+            if (to->posy > from->posy)
+                return 0;
+            else
+                return 1;
+        } else {
+            if (to->posx < from->posx)
+                return 5;
+            else
+                return 4;
+        }
+    }
+    else {
+        if (abs(from->posx - to->posx) < 0.5) {
+            if (to->posy > from->posy)
+                return 1;
+            else
+                return 0;
+        } else {
+            if (to->posx < from->posx)
+                return 4;
+            else
+                return 5;
+        }
+    }
+}
+int mymove_new(Position_edc25* from, Position_edc25* to) {
+	int flag=1;//flag为1说明可以前进
+	int id = getMapId_new(to);
+	Position_edc25 curr;
+
+	if (getHeightOfId(id)==0) {
+		flag=0;
+		//u1_printf("id:%d,height:0\n",id);
+	    if (getWoolCount() == 0)
+	        return 0;
+	    else{
+	        place_block_id(id);
+	        HAL_Delay(500);
+	        //u1_printf("place\n");
+	        flag=1;
+	    }
+
+	}
+	if(flag){
+		setdir(getdir_new(from,to));
+	    setv(SPE);
+		getPosition(&curr);
+		//u1_printf("dir:%d,nowpos(%f，%f)\n",dir,curr.posx,curr.posy);
+		if(dir==0||dir==1){
+			while(abs(curr.posy-to->posy)>0.3){
+				getPosition(&curr);
+				//u1_printf("dir:%d,(%f,%f)\n",dir,curr.posx,curr.posy);
+			}
+		}
+		else{
+			while(abs(curr.posx-to->posx)>0.3){
+				getPosition(&curr);
+				//u1_printf("dir:%d,(%f,%f)\n",dir,curr.posx,curr.posy);
+			}
+		}
+		setv(0);
+		return 1;
+	}
+	return 0;
+}
+int move_target(Position_edc25 *from,Position_edc25 *to,int v){
+	setdir(getdir_new(from,to));
+	setv(v);
+	if(dir==0||dir==1){
+		while((my_pos.posy-to->posy)>0.3||to->posy-my_pos.posy>0.3){
+
+			//u1_printf("dir:%d,(%f,%f)\n",dir,curr.posx,curr.posy);
+		}
+		u1_printf("now:(%f,%f),target:(%f,%f)",my_pos.posx,my_pos.posy,to->posx,to->posy);
+	}
+	else{
+		while((my_pos.posx-to->posx)>0.3||to->posx-my_pos.posx>0.3){
+
+			//u1_printf("dir:%d,(%f,%f)\n",dir,curr.posx,curr.posy);
+		}
+	}
+	setv(0);
+	return 1;
+}
+int InitBase(){
+	Position_edc25 curr;
+	getPosition(&curr);
+	if(curr.posx>3){
+		Base.posx=7.5;
+		Base.posy=7.5;
+		return 1;
+	}
+	else{
+		Base.posx=0.5;
+		Base.posy=0.5;
+		return 0;
+	}
+}

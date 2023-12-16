@@ -1,0 +1,489 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "dma.h"
+#include "tim.h"
+#include "usart.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "motion.h"
+#include "jy62.h"
+#include "zigbee_edc25.h"
+#include "game.h"
+#include "math.h"
+#include "logic.h"
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+
+uint8_t u4_RX_Buf[76];
+uint8_t last_Buf[66];
+int readyed=0;
+
+
+
+uint8_t hp = 0;
+uint8_t Aglity = 0;
+uint8_t count = 0;
+int32_t time = 0;
+
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+float pid(pidstr *a,float dr)//用于更新PWM的占空比
+{
+  a->sum = a->sum + dr;
+  float pwm = a->Kp * dr + a->Ki * a->sum + a->Kd * (dr - a->lr);
+  a->lr = dr;
+  if(pwm >= PID_MAX){
+    return PID_MAX;
+  }
+  else if(pwm <= PID_MIN)
+  {
+    return PID_MIN;
+  }
+  else
+  {
+    return pwm;
+  }
+}
+
+//这个刚刚加过了，只是告诉读�?�应该放�??????
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	if(htim->Instance==TIM2)
+	  {
+	    int cnt=__HAL_TIM_GetCounter(&htim3);
+	    if (cnt>500){
+	    	cnt=(65535-cnt);
+	    }
+	    __HAL_TIM_SetCounter(&htim3, 0);
+	    float vnow=(cnt/15.59)*20.7;//v单位：cm/s
+	    float dr=vset-vnow;
+	    float Ori_pwm=pid(&pidparm,dr);
+	    float yaw = GetYaw();
+	    //u1_printf("ROW: %f, PITCH:%f, YAW:%f\r\n", roll, pitch, yaw);
+
+	    //u1_printf("%f,%f,%f\n",vnow,vset,pwm);
+	    //int temp=pwm;
+	    int pwm[4];
+	    int dphi=yaw>180?360-yaw:yaw;
+	    float Ori_pidphi =pid(&pidparm1,dphi);
+	    int pwmphi=Ori_pidphi;
+	    if(dir==4&&vset>10){//平移的校准
+	    	if(yaw>0&&yaw<180){
+	    		pwm[0]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[1]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[2]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[3]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    	}
+	    	else if(yaw<360&&yaw>180){
+	    		pwm[0]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[1]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[2]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[3]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    	}
+	    }
+	    else if(dir==5&&vset>10){
+	    	if(yaw<360&&yaw>180){
+	    		pwm[0]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[1]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[2]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[3]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    	}
+	    	else if(yaw>0&&yaw<180){
+	    		pwm[0]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[1]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[2]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[3]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    	}
+	    }
+	    else if(dir==1&&vset>10){
+	    	if(yaw<360&&yaw>180){
+	    		pwm[0]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[2]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[1]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[3]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    	}
+	    	else if(yaw>0&&yaw<180){
+	    		pwm[0]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[2]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[1]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[3]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    	}
+	    }
+	    else if(dir==0&&vset>10){
+	    	if(yaw>0&&yaw<180){
+	    		pwm[0]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[2]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[1]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[3]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    	}
+	    	else if(yaw<360&&yaw>180){
+	    		pwm[0]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[2]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[1]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[3]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    	}
+	    }
+	    else if(vset==0){
+	    	for(int i=0;i<4;i++){//不偏航等情况
+	    		pwm[i]=0;
+	    	}
+	    }
+	    else{
+	    	for(int i=0;i<4;i++){//不偏航等情况
+	    		pwm[i]=Ori_pwm;
+	    	}
+	    }
+
+	    //u1_printf("%f\n",pwm);
+	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_1, pwm[0]);
+	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_2, pwm[1]);
+	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_3, pwm[2]);
+	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_4, pwm[3]);
+
+	    getPosition(&my_pos);
+
+	   }
+
+
+}
+void jy62_Init(UART_HandleTypeDef* huart);
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+  /* USER CODE BEGIN 1 */
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_TIM1_Init();
+  MX_TIM2_Init();
+  MX_TIM3_Init();
+  MX_USART1_UART_Init();
+  MX_USART2_UART_Init();
+  MX_USART3_UART_Init();
+  MX_UART4_Init();
+  /* USER CODE BEGIN 2 */
+  HAL_TIM_Base_Start_IT(&htim2); // 使能定时�??????2
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);// 使能定定时器1的�?�道1，设定为PWM输出
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+  HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL); //使能编码器时�??????3
+
+  int flag=1;
+  int flag1=1;
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_SET);//设置四个电机的转�??????
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_2,GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_4,GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_5,GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_6,GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_7,GPIO_PIN_RESET);
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  SetBaud(115200);
+  SetVertical();
+  InitAngle();
+  Calibrate();
+  SleepOrAwake();
+  jy62_Init(&huart2);
+  zigbee_Init(&huart3);
+
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+	  //gameRun();
+
+	  if(GetPitch()!=0&&flag){
+		  move_time(0,100,30);
+		  flag=0;
+		  InitAngle();
+	  }//调试陀螺仪是否工作
+
+	  //u1_printf("%d\n",base); //测试通过，确定base是0还是1没有问题
+//	  Position_edc25 curr;
+//	  getPosition(&curr);
+
+//	  u1_printf("(%f,%f)\n",curr.posx,curr.posy);
+	  if(getGameStage()==1 && getGameTime() < 20*60){
+		  //setv(30);
+		  InitBase();
+//		  gohome();
+//		  for(int i=0;i<pathlen;i++){
+////			  place_block_id(getMapId_new(path+i));
+////			  HAL_Delay(300);//这两句测试放羊毛
+//			  move_target(&my_pos,path+i,20);
+//			  u1_printf("over!(%f,%f)\n",my_pos.posx,my_pos.posy);
+//			  HAL_Delay(300);
+//			  check_yaw(5);
+//		  }//测试回家
+
+		  make_choice();
+
+		  for(int i=0;i<pathlen;i++){
+			  int id = getMapId_new(path+i);
+			  if(!getHeightOfId(id))
+				  place_block_id(id);
+			  HAL_Delay(300);//这两句测试放羊
+			  move_target(&my_pos,path+i,20);
+			  u1_printf("maMap[%d]: %d", id, myMap_new[id]);
+			  //u1_printf("over!(%f,%f)\n",my_pos.posx,my_pos.posy);
+			  HAL_Delay(300);
+			  check_yaw(5);
+		  }
+
+		  Trade();
+
+//		  u1_printf("gamestart");
+//		  InitBase();
+//		  InitAngle();
+//		  path[0].posx=7.5;
+//		  path[0].posy=6.5;
+//		  path[1].posx=6.5;
+//		  path[1].posy=6.5;
+//		  path[2].posx=6.5;
+//		  path[2].posy=7.5;
+//		  if(flag1){
+//			  for(int i=0;i<3;i++){
+//				  place_block_id(getMapId_new(path+i));
+//				  HAL_Delay(300);//这两句测试放羊毛
+//				  move_target(&my_pos,path+i,20);
+//				  u1_printf("over!(%f,%f)\n",my_pos.posx,my_pos.posy);
+//				  HAL_Delay(300);
+//				  check_yaw(5);
+//			  }
+////		  move_target(&my_pos,&target,20);
+////		  u1_printf("over!(%f,%f)\n",my_pos.posx,my_pos.posy);
+//		  flag1=0;
+//		  }//测试沿着给定的路边放羊毛边走
+
+//		  int base = InitBase();
+//		  Position_edc25 from={7.5,7.5};
+//		  Position_edc25 to={6.5,7.5};
+//		  mymove_new(&from,&to);
+		  //break;
+	  }//调试和上位机连接后的正方形走线
+
+//	  while(!readyed){
+//		  while (HAL_UART_Receive(&huart4, u4_RX_Buf, sizeof(u4_RX_Buf), 100) != HAL_OK);
+//		  u1_printf("received:"); // 转发到串�?1
+//		  HAL_UART_Transmit(&huart1, u4_RX_Buf, sizeof(u4_RX_Buf), HAL_MAX_DELAY);
+//		  if(u4_RX_Buf[0]=='x'){
+//			  readyed=1;
+//			  u1_printf("\n find\n");
+//		  }
+//		  int slow = 0;
+//		  for(int i = 0; i < 76; i++) {
+//			  char c = u4_RX_Buf[i];
+//			  if(c=='y')
+//				  break;
+//			  if(c-'0'>=0&&c - '0' < 10) {
+//				  u4_RX_Buf[slow] = c;
+//				  slow++;
+//			  }
+//		  }
+//		  for(int i = 0; i < 64; i++)
+//			  u1_printf("%c", u4_RX_Buf[i]);
+//	  }//从k210读取地图
+//	  initMap(u4_RX_Buf);
+
+//	  u1_printf("one_line\n");
+//	  hp = getHealth();
+//	  u1_printf("1\n");
+//	  time = getGameTime();
+//	  u1_printf("2\n");
+//	  Aglity = getAglity();
+//	  count = getWoolCount();
+//	  getPosition(&my_pos);
+//	  if(time!=0)
+//	  {
+//	  u1_printf("health: %d aglity: %d woolcount: %d\r\n",hp,Aglity,count);
+//	  u1_printf("(%f,%f)\r\n",my_pos.posx,my_pos.posy);
+//	  //place_block_id(63);
+//	  place_block_id(0);
+//	  }
+//	  HAL_Delay(500);
+	  //测试上位机
+
+
+
+
+//	  InitAngle();
+//	  if(flag&&GetPitch()!=0){
+//
+//		  move_time(4,2000,20);
+//		  check_yaw(5);
+//		  HAL_Delay(500);
+//		  move_time(0,500,30);
+//		  check_yaw(5);
+//		  HAL_Delay(500);
+//		  move_time(5,2000,20);
+//		  check_yaw(5);
+//		  HAL_Delay(500);
+//		  move_time(1,500,30);
+//		  check_yaw(5);
+//		  HAL_Delay(500);
+//
+//
+//		  flag=0;
+//	  }//运动测试
+
+
+//	  if(flag){
+//		  InitAngle();
+//		  flag=0;
+//	  }//jy62调试
+
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */

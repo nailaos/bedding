@@ -27,6 +27,10 @@
 /* USER CODE BEGIN Includes */
 #include "motion.h"
 #include "jy62.h"
+#include "zigbee_edc25.h"
+#include "game.h"
+#include "math.h"
+#include "logic.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,6 +55,14 @@
 uint8_t u4_RX_Buf[76];
 uint8_t last_Buf[66];
 int readyed=0;
+
+
+
+uint8_t hp = 0;
+uint8_t Aglity = 0;
+uint8_t count = 0;
+int32_t time = 0;
+
 
 /* USER CODE END PV */
 
@@ -81,7 +93,7 @@ float pid(pidstr *a,float dr)//用于更新PWM的占空比
   }
 }
 
-//这个刚刚加过了，只是告诉读�?�应该放�?????
+//这个刚刚加过了，只是告诉读�?�应该放�??????
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(htim->Instance==TIM2)
 	  {
@@ -92,19 +104,95 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	    __HAL_TIM_SetCounter(&htim3, 0);
 	    float vnow=(cnt/15.59)*20.7;//v单位：cm/s
 	    float dr=vset-vnow;
-	    float pwm=pid(&pidparm,dr);
-	    //u1_printf("%f,%f,%f\n",vnow,vset,pwm);
-	    int temp=pwm;
-	    //u1_printf("%f\n",pwm);
-	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_1, temp);
-	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_2, temp);
-	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_3, temp);
-	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_4, temp);
-	    float roll = GetRoll();
-	    float pitch = GetPitch();
+	    float Ori_pwm=pid(&pidparm,dr);
 	    float yaw = GetYaw();
-	    //u1_printf("ROW: %f, PITCH:%f, YAW:%f\r\n", roll, pitch, yaw);
+	    u1_printf("ROW: %f, PITCH:%f, YAW:%f\r\n", 5.0, 5.0, yaw);
+
+	    //u1_printf("%f,%f,%f\n",vnow,vset,pwm);
+	    //int temp=pwm;
+	    int pwm[4];
+	    int dphi=yaw>180?360-yaw:yaw;
+	    float Ori_pidphi =pid(&pidparm1,dphi);
+	    int pwmphi=Ori_pidphi;
+	    if(dir==4&&vset>10){//平移的校准
+	    	if(yaw>0&&yaw<180){
+	    		pwm[0]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[1]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[2]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[3]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    	}
+	    	else if(yaw<360&&yaw>180){
+	    		pwm[0]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[1]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[2]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[3]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    	}
+	    }
+	    else if(dir==5&&vset>10){
+	    	if(yaw<360&&yaw>180){
+	    		pwm[0]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[1]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[2]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[3]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    	}
+	    	else if(yaw>0&&yaw<180){
+	    		pwm[0]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[1]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[2]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[3]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    	}
+	    }
+	    else if(dir==1&&vset>10){
+	    	if(yaw<360&&yaw>180){
+	    		pwm[0]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[2]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[1]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[3]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    	}
+	    	else if(yaw>0&&yaw<180){
+	    		pwm[0]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[2]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[1]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[3]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    	}
+	    }
+	    else if(dir==0&&vset>10){
+	    	if(yaw>0&&yaw<180){
+	    		pwm[0]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[2]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[1]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[3]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    	}
+	    	else if(yaw<360&&yaw>180){
+	    		pwm[0]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[2]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    		pwm[1]=Ori_pwm-pwmphi<0?0:Ori_pwm-pwmphi;
+	    		pwm[3]=Ori_pwm+pwmphi>1000?1000:Ori_pwm+pwmphi;
+	    	}
+	    }
+	    else if(vset==0){
+	    	for(int i=0;i<4;i++){//不偏航等情况
+	    		pwm[i]=0;
+	    	}
+	    }
+	    else{
+	    	for(int i=0;i<4;i++){//不偏航等情况
+	    		pwm[i]=Ori_pwm;
+	    	}
+	    }
+
+	    //u1_printf("%f\n",pwm);
+	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_1, pwm[0]);
+	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_2, pwm[1]);
+	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_3, pwm[2]);
+	    __HAL_TIM_SetCompare(&htim1,TIM_CHANNEL_4, pwm[3]);
+
+	    getPosition(&my_pos);
+
 	   }
+
+
+
 }
 void jy62_Init(UART_HandleTypeDef* huart);
 /* USER CODE END 0 */
@@ -146,15 +234,17 @@ int main(void)
   MX_USART3_UART_Init();
   MX_UART4_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start_IT(&htim2); // 使能定时�?????2
+  HAL_TIM_Base_Start_IT(&htim2); // 使能定时�??????2
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);// 使能定定时器1的�?�道1，设定为PWM输出
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-  HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL); //使能编码器时�?????3
+  HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL); //使能编码器时�??????3
 
   int flag=1;
-  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_SET);//设置四个电机的转�?????
+  int flag1=1;
+
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_SET);//设置四个电机的转�??????
   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_RESET);
   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_2,GPIO_PIN_SET);
   HAL_GPIO_WritePin(GPIOC,GPIO_PIN_3,GPIO_PIN_RESET);
@@ -172,95 +262,165 @@ int main(void)
   Calibrate();
   SleepOrAwake();
   jy62_Init(&huart2);
+  zigbee_Init(&huart3);
 
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  while(!readyed){
-		  while (HAL_UART_Receive(&huart4, u4_RX_Buf, sizeof(u4_RX_Buf), 100) != HAL_OK);
-		  u1_printf("received:"); // 转发到串口1
-		  HAL_UART_Transmit(&huart1, u4_RX_Buf, sizeof(u4_RX_Buf), HAL_MAX_DELAY);
-		  if(u4_RX_Buf[0]=='x')
-			  {readyed=1;
-		  u1_printf("\n find\n");}
-		  int slow = 0;
-		  for(int i = 0; i < 76; i++) {
-			  char c = u4_RX_Buf[i];
-			  if(c=='y')
-				  break;
-			  if(c-'0'>=0&&c - '0' < 10) {
-				  u4_RX_Buf[slow] = c;
-				  slow++;
+	  //gameRun();
+
+	  if(GetPitch()!=0&&flag){
+		  move_time(0,100,30);
+		  flag=0;
+		  InitAngle();
+	  }//调试陀螺仪是否工作
+
+	  //u1_printf("%d\n",base); //测试通过，确定base是0还是1没有问题
+//	  Position_edc25 curr;
+//	  getPosition(&curr);
+
+
+
+//	  u1_printf("(%f,%f)\n",curr.posx,curr.posy);
+
+	  if(getGameStage()==1 && getGameTime() < 20*60*9){
+		  //setv(30);
+		  InitBase();
+		  if(flag1){
+			  Position_edc25 tmp;
+			  if(Base.posx==0.5){
+				  tmp.posx = 0.5;
+				  tmp.posy = 1.5;
+			  }else {
+				  tmp.posx = 7.5;
+				  tmp.posy = 6.5;
 			  }
+			  move_target(&my_pos, &tmp,20);
+			  HAL_Delay(8500);
+			  move_target(&my_pos, &Base,20);
+			  HAL_Delay(8500);
+			  flag1 = 0;
 		  }
-		  for(int i = 0; i < 64; i++)
-			  u1_printf("%c", u4_RX_Buf[i]);
+
+		  make_choice();
+
+		  for(int i=0;i<pathlen;i++){
+			  int id = getMapId_new(path+i);
+			  if(!getHeightOfId(id))
+				  place_block_id(id);
+			  HAL_Delay(300);//这两句测试放羊
+			  move_target(&my_pos,path+i,15);
+			  u1_printf("maMap[%d]: %d", id, myMap_new[id]);
+			  //u1_printf("over!(%f,%f)\n",my_pos.posx,my_pos.posy);
+			  HAL_Delay(300);
+			  check_yaw(3);
+		  }
+
+		  Trade();
+
 	  }
 
-//	  if(!readyed){
-//		  while(!readyed){
-//			  	  u1_printf("received:");
-//		  		  while (HAL_UART_Receive(&huart4, u4_RX_Buf, sizeof(u4_RX_Buf),100) != HAL_OK);
-//		  		  u1_printf("received:"); // 转发到串口1
-//		  		  HAL_UART_Transmit(&huart1, u4_RX_Buf, sizeof(u4_RX_Buf), HAL_MAX_DELAY);
-//		  		  for(int i=0;i<66;i++){
-//		  			  if(u4_RX_Buf[i]=='y'){
-//		  				  readyed=1;
-//		  			  }
-//		  		  }
-//		  		  if(!readyed){
-//		  			  for(int i=0;i<664;i++){
-//		  				  last_Buf[i]=u4_RX_Buf[i];
-//		  			  }
-//		  		  }
-//		  	  }
-//		  	  int slow = 0;
-//		  	  int finded = 0;
-//		  	  for(int i=0;i<66;i++){
-//		  		  if(last_Buf[i]=='x') {
-//		  			  finded = 1;
-//		  			  continue;
-//		  		  }
-//		  		  if(finded) {
-//		  			  last_Buf[slow] = last_Buf[i];
-//		  			  slow++;
-//		  		  }
-//		  	  }
-//		  	  for(int i=0;i<66;i++){
-//		  		  if(finded) {
-//		  			  last_Buf[slow] = u4_RX_Buf[i];
-//		  			  slow++;
-//		  			  if(slow == 64)
-//		  				  break;
-//		  		  }
-//		  		  else{
-//		  			  for(int j=0;j<64;j++){
-//		  				  last_Buf[j]=u4_RX_Buf[j+1];
-//		  			  }
-//		  			  break;
-//		  		  }
-//		  	  }
-//		  	  u1_printf("\n received:"); // 转发到串口1
-//		  	  for(int i=0;i<64;i++){
-//		  		  u1_printf("%c",last_Buf[i]);
-//		  	  }
+//		  u1_printf("gamestart");
+//		  InitBase();
+//		  InitAngle();
+//		  path[0].posx=7.5;
+//		  path[0].posy=6.5;
+//		  path[1].posx=6.5;
+//		  path[1].posy=6.5;
+//		  path[2].posx=6.5;
+//		  path[2].posy=7.5;
+//		  if(flag1){
+//			  for(int i=0;i<3;i++){
+//				  place_block_id(getMapId_new(path+i));
+//				  HAL_Delay(300);//这两句测试放羊毛
+//				  move_target(&my_pos,path+i,20);
+//				  u1_printf("over!(%f,%f)\n",my_pos.posx,my_pos.posy);
+//				  HAL_Delay(300);
+//				  check_yaw(5);
+//			  }
+////		  move_target(&my_pos,&target,20);
+////		  u1_printf("over!(%f,%f)\n",my_pos.posx,my_pos.posy);
+//		  flag1=0;
+//		  }//测试沿着给定的路边放羊毛边走
+
+//		  int base = InitBase();
+//		  Position_edc25 from={7.5,7.5};
+//		  Position_edc25 to={6.5,7.5};
+//		  mymove_new(&from,&to);
+		  //break;
+	  //调试和上位机连接后的正方形走线
+
+//	  while(!readyed){
+//		  while (HAL_UART_Receive(&huart4, u4_RX_Buf, sizeof(u4_RX_Buf), 100) != HAL_OK);
+//		  u1_printf("received:"); // 转发到串�?1
+//		  HAL_UART_Transmit(&huart1, u4_RX_Buf, sizeof(u4_RX_Buf), HAL_MAX_DELAY);
+//		  if(u4_RX_Buf[0]=='x'){
+//			  readyed=1;
+//			  u1_printf("\n find\n");
+//		  }
+//		  int slow = 0;
+//		  for(int i = 0; i < 76; i++) {
+//			  char c = u4_RX_Buf[i];
+//			  if(c=='y')
+//				  break;
+//			  if(c-'0'>=0&&c - '0' < 10) {
+//				  u4_RX_Buf[slow] = c;
+//				  slow++;
+//			  }
+//		  }
+//		  for(int i = 0; i < 64; i++)
+//			  u1_printf("%c", u4_RX_Buf[i]);
+//	  }//从k210读取地图
+//	  initMap(u4_RX_Buf);
+
+//	  u1_printf("one_line\n");
+//	  hp = getHealth();
+//	  u1_printf("1\n");
+//	  time = getGameTime();
+//	  u1_printf("2\n");
+//	  Aglity = getAglity();
+//	  count = getWoolCount();
+//	  getPosition(&my_pos);
+//	  if(time!=0)
+//	  {
+//	  u1_printf("health: %d aglity: %d woolcount: %d\r\n",hp,Aglity,count);
+//	  u1_printf("(%f,%f)\r\n",my_pos.posx,my_pos.posy);
+//	  //place_block_id(63);
+//	  place_block_id(0);
 //	  }
+//	  HAL_Delay(500);
+	  //测试上位机
 
 
 
-//	  int dir=0;
+
 //	  InitAngle();
 //	  if(flag&&GetPitch()!=0){
-//		  for(int i=0;i<4;i++){
-//			  move_time(dir+4,600,30);
-//			  //dir=!dir;
-//			  HAL_Delay(500);
-//		  }
+//
+//		  move_time(4,2000,20);
 //		  check_yaw(5);
+//		  HAL_Delay(500);
+//		  move_time(0,500,30);
+//		  check_yaw(5);
+//		  HAL_Delay(500);
+//		  move_time(5,2000,20);
+//		  check_yaw(5);
+//		  HAL_Delay(500);
+//		  move_time(1,500,30);
+//		  check_yaw(5);
+//		  HAL_Delay(500);
+//
+//
 //		  flag=0;
-//	  }
+//	  }//运动测试
+
+
+//	  if(flag){
+//		  InitAngle();
+//		  flag=0;
+//	  }//jy62调试
 
   }
   /* USER CODE END 3 */

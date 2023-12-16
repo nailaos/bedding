@@ -1,0 +1,17 @@
+../Core/Src/game.c:21:6:initMap	32	static
+../Core/Src/game.c:31:6:printMap	16	static
+../Core/Src/game.c:40:5:getMapId	24	static
+../Core/Src/game.c:46:5:findPath	56	static
+../Core/Src/game.c:84:6:printPath	32	static
+../Core/Src/game.c:98:5:arrive	40	static
+../Core/Src/game.c:107:5:accident	8	static
+../Core/Src/game.c:115:5:putWool	24	static
+../Core/Src/game.c:139:5:getdir	16	static
+../Core/Src/game.c:168:5:mymove	16	static
+../Core/Src/game.c:181:5:myMove	16	static
+../Core/Src/game.c:191:6:moveHome	8	static
+../Core/Src/game.c:195:5:decide	32	static
+../Core/Src/game.c:207:5:availableBuy	16	static
+../Core/Src/game.c:211:6:myTrade	16	static
+../Core/Src/game.c:225:6:executeTask	16	static
+../Core/Src/game.c:237:6:gameRun	16	static

@@ -47,7 +47,7 @@ void getPositionOpponent(Position_edc25* Pos);
 int32_t getMapPosition(Position_edc25* Pos);
 
 // 获取敏捷
-uint8_t getAgility();
+uint8_t getAglity();
 
 // 获取当前生命
 uint8_t getHealth();

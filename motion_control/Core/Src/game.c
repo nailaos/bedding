@@ -1,11 +1,12 @@
 #include "game.h"
 #include "usart.h"
 #include <stdlib.h>
+#include "logic.h"
 
 #define SPE 20
 #define WOOL 16
 
-int myMap[8][8] = { 0 };
+static int myMap[8][8] = { 0 };
 int visited[8][8];
 Position_edc25* myPath;
 int myBase[2] = { 7, 7 };
@@ -39,7 +40,7 @@ void printMap() {
 int getMapId(Position_edc25* points) {
     int x = (int)points->posx;
     int y = (int)points->posy;
-    return 8 * y + x;
+    return 8 * x + y;
 }
 
 int findPath(int x, int y, int currMiner, int woolNum, Position_edc25* path, int* len) {
@@ -144,11 +145,12 @@ int getdir(Position_edc25* from, Position_edc25* to) {
                 return 1;
         } else {
             if (to->posx < from->posx)
-                return 2;
+                return 4;
             else
-                return 3;
+                return 5;
         }
-    } else {
+    }
+    else {
         if (abs(from->posx - to->posx) < 0.5) {
             if (to->posy > from->posy)
                 return 1;
@@ -156,16 +158,16 @@ int getdir(Position_edc25* from, Position_edc25* to) {
                 return 0;
         } else {
             if (to->posx < from->posx)
-                return 3;
+                return 5;
             else
-                return 2;
+                return 4;
         }
     }
 }
 
 int mymove(Position_edc25* from, Position_edc25* to) {
     setv(SPE);
-    setdir(getdir());
+    setdir(getdir(from,to));
     while (!arrive(from, to)) {
         if (!putWool(from, to) || accident()) {
             setv(0);
@@ -188,7 +190,6 @@ int myMove() {
 
 void moveHome() {
     u1_printf("go to home\n");
-    Position_edc25
 }
 
 int decide() {
@@ -211,7 +212,7 @@ void myTrade() {
     int woolcount = getWoolCount();
     if (woolcount < WOOL / 2) {
         for (int i = 0; i < WOOL - woolcount; i++) {
-            if (!availableBuy(x))
+            if (!availableBuy(3))
                 break;
             trade_id(3);
         }
@@ -224,7 +225,7 @@ void myTrade() {
 void executeTask(int x) {
     if (x == 0) {
         printMap();
-        // printPath();
+         printPath();
         // int res = myMove();
         // if (res)
         //     myTrade();

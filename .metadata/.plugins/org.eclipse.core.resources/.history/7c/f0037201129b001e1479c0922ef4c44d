@@ -1,0 +1,7 @@
+#pragma once
+#include "motion.h"
+
+
+
+int mymove_new(Position_edc25* from, Position_edc25* to) ;
+int InitBase();//0为左上角，1为右下角

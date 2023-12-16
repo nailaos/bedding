@@ -1,0 +1,9 @@
+../Core/Src/logic.c:13:5:getMapId_new	24	static
+../Core/Src/logic.c:18:5:getdir_new	16	static
+../Core/Src/logic.c:49:5:mymove_new	32	static
+../Core/Src/logic.c:89:5:move_target	72	static
+../Core/Src/logic.c:111:5:InitBase	16	static
+../Core/Src/logic.c:125:5:move_home	16	static
+../Core/Src/logic.c:134:6:gohome	4	static
+../Core/Src/logic.c:143:5:make_choice	8	static
+../Core/Src/logic.c:497:5:Trade	16	static

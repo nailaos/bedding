@@ -24,7 +24,8 @@ extern "C" {
     float Kd;
   }pidstr;
   extern pidstr pidparm;//用于保存PID参数和用于计算PWM占空比的�?
-
+  extern pidstr pidparm1;
+  extern int dir;
   //函数声明
   void setv(float v);
   void move_time(int dir, int t, int v);//dir:0向前，1向后；单位：ms,单位：cm/s

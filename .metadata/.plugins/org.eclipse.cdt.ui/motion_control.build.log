@@ -1,31 +1,10 @@
-01:33:11 **** Incremental Build of configuration Debug for project motion_control ****
+11:11:48 **** Incremental Build of configuration Debug for project motion_control ****
 make -j20 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
-../Core/Src/main.c:105:12: warning: unused variable 'yaw' [-Wunused-variable]
-  105 |      float yaw = GetYaw();
-      |            ^~~
-../Core/Src/main.c:104:12: warning: unused variable 'pitch' [-Wunused-variable]
-  104 |      float pitch = GetPitch();
-      |            ^~~~~
-../Core/Src/main.c:103:12: warning: unused variable 'roll' [-Wunused-variable]
-  103 |      float roll = GetRoll();
-      |            ^~~~
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:156:7: warning: unused variable 'flag' [-Wunused-variable]
-  156 |   int flag=1;
-      |       ^~~~
-arm-none-eabi-g++ -o "motion_control.elf" @"objects.list"   -mcpu=cortex-m3 -T"G:\STM32CubeIDE_1.12.1\bedding\motion_control\STM32F103RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="motion_control.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: motion_control.elf
- 
 arm-none-eabi-size   motion_control.elf 
-arm-none-eabi-objdump -h -S  motion_control.elf  > "motion_control.list"
    text	   data	    bss	    dec	    hex	filename
-  46408	    528	   3064	  50000	   c350	motion_control.elf
+  52272	    548	   3668	  56488	   dca8	motion_control.elf
 Finished building: default.size.stdout
  
-Finished building: motion_control.list
- 
 
-01:33:12 Build Finished. 0 errors, 4 warnings. (took 741ms)
+11:11:48 Build Finished. 0 errors, 0 warnings. (took 316ms)
 
